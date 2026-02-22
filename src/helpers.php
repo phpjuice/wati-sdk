@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @param  TDefault  $default
  * @return string|TDefault
  */
-function data_get(array $data, string $key, mixed $default = null): mixed
+function data_get_str(array $data, string $key, mixed $default = null): mixed
 {
     if (! array_key_exists($key, $data)) {
         return $default;
