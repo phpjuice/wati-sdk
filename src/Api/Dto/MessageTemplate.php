@@ -13,8 +13,6 @@ final readonly class MessageTemplate
         public ?string $status = null,
         public ?string $language = null,
         public ?string $body = null,
-        public mixed $hsm = null,
-        public mixed $hsmOriginal = null,
     ) {}
 
     /**
@@ -29,8 +27,6 @@ final readonly class MessageTemplate
             status: is_string($v = data_get_str($data, 'status')) ? $v : null,
             language: is_string($v = data_get_str($data, 'language')) ? $v : null,
             body: is_string($v = data_get_str($data, 'body')) ? $v : null,
-            hsm: $data['hsm'] ?? null,
-            hsmOriginal: $data['hsmOriginal'] ?? null,
         );
     }
 }
