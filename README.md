@@ -99,6 +99,12 @@ class ContactController
 |---------------|--------|-----------------------|
 | `GetContacts` | GET    | `/api/v1/getContacts` |
 
+### Templates
+
+| Class                 | Method | Endpoint                      |
+|-----------------------|--------|-------------------------------|
+| `GetMessageTemplates` | GET    | `/api/v1/getMessageTemplates` |
+
 ## Usage
 
 ### Get Contacts
@@ -112,7 +118,7 @@ use Wati\Api\GetContacts;
 $response = $client->send(new GetContacts());
 
 // Get a specific page with a custom page size
-$response = $client->send(new GetContacts(page: 2, pageSize: 100));
+$response = $client->send(new GetContacts(pageNumber: 2, pageSize: 100));
 ```
 
 ## Error Handling

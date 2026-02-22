@@ -6,7 +6,7 @@ namespace Wati\Api;
 
 use Wati\Http\WatiRequest;
 
-final class GetContacts extends WatiRequest
+final class GetMessageTemplates extends WatiRequest
 {
     public function __construct(
         public readonly int $pageNumber = 1,
@@ -14,7 +14,7 @@ final class GetContacts extends WatiRequest
     ) {
         parent::__construct(
             'GET',
-            "/api/v1/getContacts?pageNumber={$pageNumber}&pageSize={$pageSize}",
+            "/api/v1/getMessageTemplates?pageNumber={$pageNumber}&pageSize={$pageSize}",
             ['Accept' => 'application/json']
         );
     }
