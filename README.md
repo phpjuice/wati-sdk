@@ -47,6 +47,50 @@ $response = $client->send(new GetContacts());
 $contacts = json_decode($response->getBody()->getContents(), true);
 ```
 
+### Usage with Laravel
+
+The SDK includes a Laravel service provider for easy integration.
+
+#### Configuration
+
+Add the following to your `config/services.php`:
+
+```php
+'wati' => [
+    'endpoint' => env('WATI_ENDPOINT'),
+    'token' => env('WATI_TOKEN'),
+],
+```
+
+Add to your `.env` file:
+
+```env
+WATI_ENDPOINT=https://your-instance.wati.io/123456
+WATI_TOKEN=your-bearer-token
+```
+
+#### Usage in Laravel
+
+The service provider is auto-discovered. Simply inject or resolve `WatiClient`:
+
+```php
+use Wati\Http\WatiClient;
+use Wati\Api\GetContacts;
+
+class ContactController
+{
+    public function __construct(
+        private readonly WatiClient $wati
+    ) {}
+
+    public function index()
+    {
+        $response = $this->wati->send(new GetContacts());
+        return json_decode($response->getBody()->getContents(), true);
+    }
+}
+```
+
 ## Available API Classes
 
 ### Contacts
@@ -97,50 +141,6 @@ try {
     $statusCode = $e->getStatusCode();
 } catch (WatiException $e) {
     // Connection or other HTTP errors
-}
-```
-
-## Usage with Laravel
-
-The SDK includes a Laravel service provider for easy integration.
-
-### Configuration
-
-Add the following to your `config/services.php`:
-
-```php
-'wati' => [
-    'endpoint' => env('WATI_ENDPOINT'),
-    'token' => env('WATI_TOKEN'),
-],
-```
-
-Add to your `.env` file:
-
-```env
-WATI_ENDPOINT=https://your-instance.wati.io/123456
-WATI_TOKEN=your-bearer-token
-```
-
-### Usage
-
-The service provider is auto-discovered. Simply inject or resolve `WatiClient`:
-
-```php
-use Wati\Http\WatiClient;
-use Wati\Api\GetContacts;
-
-class ContactController
-{
-    public function __construct(
-        private readonly WatiClient $wati
-    ) {}
-
-    public function index()
-    {
-        $response = $this->wati->send(new GetContacts());
-        return json_decode($response->getBody()->getContents(), true);
-    }
 }
 ```
 
