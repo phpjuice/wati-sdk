@@ -8,3 +8,4 @@ All notable changes to `phpjuice/wati-sdk` will be documented in this file.
 - Pre-built API classes for Wati API:
   - `Wati\Api\GetContacts` - Get paginated list of contacts
 - PHP 8.3+ support
+- Add Laravel service provider
