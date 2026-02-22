@@ -23,7 +23,8 @@
     "require": {
         "php": "^8.3 || ^8.4",
         "ext-json": "*",
-        "phpjuice/wati-http-client": "^1.0"
+        "phpjuice/wati-http-client": "^1.0",
+        "illuminate/support": "^10.0|^11.0|^12.0"
     },
     "require-dev": {
         "laravel/pint": "^1.27",
@@ -73,6 +74,13 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wati\\Laravel\\WatiServiceProvider"
+            ]
         }
     }
 }

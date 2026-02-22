@@ -100,6 +100,50 @@ try {
 }
 ```
 
+## Usage with Laravel
+
+The SDK includes a Laravel service provider for easy integration.
+
+### Configuration
+
+Add the following to your `config/services.php`:
+
+```php
+'wati' => [
+    'endpoint' => env('WATI_ENDPOINT'),
+    'token' => env('WATI_TOKEN'),
+],
+```
+
+Add to your `.env` file:
+
+```env
+WATI_ENDPOINT=https://your-instance.wati.io/123456
+WATI_TOKEN=your-bearer-token
+```
+
+### Usage
+
+The service provider is auto-discovered. Simply inject or resolve `WatiClient`:
+
+```php
+use Wati\Http\WatiClient;
+use Wati\Api\GetContacts;
+
+class ContactController
+{
+    public function __construct(
+        private readonly WatiClient $wati
+    ) {}
+
+    public function index()
+    {
+        $response = $this->wati->send(new GetContacts());
+        return json_decode($response->getBody()->getContents(), true);
+    }
+}
+```
+
 ## API Reference
 
 For full API documentation, visit [Wati API Docs](https://docs.wati.io/reference/introduction).
