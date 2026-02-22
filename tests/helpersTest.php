@@ -46,12 +46,21 @@ describe('data_get_str', function (): void {
             ->and(data_get_str($data, 'name', 'default'))->toBe('default');
     });
 
-    it('returns default when value is not a string', function (): void {
-        $data = ['count' => 42, 'active' => true];
+    it('converts scalar values to string', function (): void {
+        $data = ['count' => 42, 'active' => true, 'price' => 19.99, 'flag' => false];
 
-        expect(data_get_str($data, 'count'))->toBeNull()
-            ->and(data_get_str($data, 'count', 'default'))->toBe('default')
-            ->and(data_get_str($data, 'active'))->toBeNull();
+        expect(data_get_str($data, 'count'))->toBe('42')
+            ->and(data_get_str($data, 'active'))->toBe('1')
+            ->and(data_get_str($data, 'price'))->toBe('19.99')
+            ->and(data_get_str($data, 'flag'))->toBe('');
+    });
+
+    it('returns default for non-scalar values', function (): void {
+        $data = ['items' => ['a', 'b'], 'obj' => new stdClass];
+
+        expect(data_get_str($data, 'items'))->toBeNull()
+            ->and(data_get_str($data, 'items', 'default'))->toBe('default')
+            ->and(data_get_str($data, 'obj'))->toBeNull();
     });
 
     it('returns default when trimmed value is empty', function (): void {

@@ -23,7 +23,15 @@ function data_get_str(array $data, string $key, ?string $default = null): ?strin
 {
     $value = data_get_value($data, $key, $default);
 
-    return is_string($value) ? trim($value) : $default;
+    if (is_string($value)) {
+        return trim($value);
+    }
+
+    if (is_scalar($value)) {
+        return (string) $value;
+    }
+
+    return $default;
 }
 
 /**
