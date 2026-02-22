@@ -24,15 +24,15 @@ final readonly class Contact
     public static function fromArray(array $data): self
     {
         return new self(
-            id: data_get_str($data, 'id', ''),
-            phone: data_get_str($data, 'phone', ''),
-            fullName: data_get_str($data, 'fullName', ''),
-            wAid: is_string($v = data_get_str($data, 'wAid')) ? $v : null,
-            firstName: is_string($v = data_get_str($data, 'firstName')) ? $v : null,
-            email: is_string($v = data_get_str($data, 'email')) ? $v : null,
-            contactStatus: is_string($v = data_get_str($data, 'contactStatus')) ? $v : null,
-            created: is_string($v = data_get_str($data, 'created')) ? $v : null,
-            lastUpdated: is_string($v = data_get_str($data, 'lastUpdated')) ? $v : null,
+            id: data_get_str($data, 'id') ?? '',
+            phone: data_get_str($data, 'phone') ?? '',
+            fullName: data_get_str($data, 'fullName') ?? '',
+            wAid: data_get_str($data, 'wAid'),
+            firstName: data_get_str($data, 'firstName'),
+            email: data_get_str($data, 'email'),
+            contactStatus: data_get_str($data, 'contactStatus'),
+            created: data_get_str($data, 'created'),
+            lastUpdated: data_get_str($data, 'lastUpdated'),
         );
     }
 }

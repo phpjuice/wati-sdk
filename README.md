@@ -104,6 +104,7 @@ class ContactController
 | Class                 | Method | Endpoint                      |
 |-----------------------|--------|-------------------------------|
 | `GetMessageTemplates` | GET    | `/api/v1/getMessageTemplates` |
+| `SendTemplateMessage` | POST   | `/api/v1/sendTemplateMessage` |
 
 ## Usage
 

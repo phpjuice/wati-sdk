@@ -21,12 +21,12 @@ final readonly class MessageTemplate
     public static function fromArray(array $data): self
     {
         return new self(
-            id: data_get_str($data, 'id', ''),
-            elementName: data_get_str($data, 'elementName', ''),
-            category: is_string($v = data_get_str($data, 'category')) ? $v : null,
-            status: is_string($v = data_get_str($data, 'status')) ? $v : null,
-            language: is_string($v = data_get_str($data, 'language')) ? $v : null,
-            body: is_string($v = data_get_str($data, 'body')) ? $v : null,
+            id: data_get_str($data, 'id') ?? '',
+            elementName: data_get_str($data, 'elementName') ?? '',
+            category: data_get_str($data, 'category'),
+            status: data_get_str($data, 'status'),
+            language: data_get_str($data, 'language'),
+            body: data_get_str($data, 'body'),
         );
     }
 }
