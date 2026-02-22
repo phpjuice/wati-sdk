@@ -42,12 +42,12 @@ final readonly class GetContactsData
         $link = $data['link'] ?? [];
 
         return new self(
-            result: is_string($data['result'] ?? null) ? $data['result'] : '',
-            total: (int) ($link['total'] ?? 0),
-            pageNumber: (int) ($link['pageNumber'] ?? 1),
-            pageSize: (int) ($link['pageSize'] ?? 50),
-            prevPage: is_string($link['prevPage'] ?? null) ? $link['prevPage'] : null,
-            nextPage: is_string($link['nextPage'] ?? null) ? $link['nextPage'] : null,
+            result: data_get_str($data, 'result') ?? '',
+            total: data_get_int($link, 'total'),
+            pageNumber: data_get_int($link, 'pageNumber', 1),
+            pageSize: data_get_int($link, 'pageSize', 50),
+            prevPage: data_get_str($link, 'prevPage'),
+            nextPage: data_get_str($link, 'nextPage'),
             contacts: array_map(
                 Contact::fromArray(...),
                 $data['contact_list'] ?? []

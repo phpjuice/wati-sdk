@@ -40,6 +40,7 @@ $data = json_decode($response->getBody()->getContents(), true);
 |----------------------|--------|------------------------------|
 | `GetContacts`        | GET    | `/api/v1/getContacts`        |
 | `GetMessageTemplates`| GET    | `/api/v1/getMessageTemplates`|
+| `SendTemplateMessage`| POST   | `/api/v1/sendTemplateMessage`|
 
 ## Testing
 
@@ -58,6 +59,8 @@ src/
     ├── GetContactsData.php
     ├── GetMessageTemplates.php
     ├── GetMessageTemplatesData.php
+    ├── SendTemplateMessage.php
+    ├── SendTemplateMessageData.php
     └── Dto/
         ├── Contact.php
         └── MessageTemplate.php
