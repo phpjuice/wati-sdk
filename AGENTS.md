@@ -36,9 +36,10 @@ $data = json_decode($response->getBody()->getContents(), true);
 
 ## Available API Classes
 
-| Class         | Method | Endpoint              |
-|---------------|--------|-----------------------|
-| `GetContacts` | GET    | `/api/v1/getContacts` |
+| Class                | Method | Endpoint                     |
+|----------------------|--------|------------------------------|
+| `GetContacts`        | GET    | `/api/v1/getContacts`        |
+| `GetMessageTemplates`| GET    | `/api/v1/getMessageTemplates`|
 
 ## Testing
 
@@ -53,7 +54,13 @@ composer types
 ```
 src/
 └── Api/
-    └── GetContacts.php
+    ├── GetContacts.php
+    ├── GetContactsData.php
+    ├── GetMessageTemplates.php
+    ├── GetMessageTemplatesData.php
+    └── Dto/
+        ├── Contact.php
+        └── MessageTemplate.php
 ```
 
 ## Requirements
