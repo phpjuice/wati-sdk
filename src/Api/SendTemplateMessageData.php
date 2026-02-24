@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Wati\Api;
 
-use Psr\Http\Message\ResponseInterface;
+use Wati\Http\WatiResponse;
 
-final readonly class SendTemplateMessageData
+final class SendTemplateMessageData extends ResponseData
 {
     public function __construct(
-        public bool $result,
-        public ?string $message = null,
-        public ?string $id = null,
-        public ?string $phone = null,
+        public readonly string $result,
+        public readonly ?string $message = null,
+        public readonly ?string $id = null,
+        public readonly ?string $phone = null,
     ) {}
 
-    public static function fromResponse(ResponseInterface $response): self
+    public static function fromResponse(WatiResponse $response): self
     {
         /**
          * @var array{
@@ -25,18 +25,13 @@ final readonly class SendTemplateMessageData
          *     phone?: string|null,
          * } $data
          */
-        $data = json_decode($response->getBody()->getContents(), true) ?? [];
+        $data = $response->json() ?? [];
 
         return new self(
-            result: data_get_bool($data, 'result'),
+            result: data_get_str($data, 'result') ?? '',
             message: data_get_str($data, 'message'),
             id: data_get_str($data, 'id'),
             phone: data_get_str($data, 'phone'),
         );
-    }
-
-    public function isSuccess(): bool
-    {
-        return $this->result;
     }
 }

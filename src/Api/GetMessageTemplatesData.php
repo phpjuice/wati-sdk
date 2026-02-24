@@ -4,25 +4,25 @@ declare(strict_types=1);
 
 namespace Wati\Api;
 
-use Psr\Http\Message\ResponseInterface;
 use Wati\Api\Dto\MessageTemplate;
+use Wati\Http\WatiResponse;
 
-final readonly class GetMessageTemplatesData
+final class GetMessageTemplatesData extends ResponseData
 {
     /**
      * @param  array<MessageTemplate>  $messageTemplates
      */
     public function __construct(
-        public string $result,
-        public int $total,
-        public int $pageNumber,
-        public int $pageSize,
-        public ?string $prevPage,
-        public ?string $nextPage,
-        public array $messageTemplates,
+        public readonly array $messageTemplates,
+        public readonly string $result,
+        public readonly int $total,
+        public readonly int $pageNumber,
+        public readonly int $pageSize,
+        public readonly ?string $prevPage,
+        public readonly ?string $nextPage,
     ) {}
 
-    public static function fromResponse(ResponseInterface $response): self
+    public static function fromResponse(WatiResponse $response): self
     {
         /**
          * @var array{
@@ -37,26 +37,21 @@ final readonly class GetMessageTemplatesData
          *     }
          * } $data
          */
-        $data = json_decode($response->getBody()->getContents(), true) ?? [];
+        $data = $response->json() ?? [];
 
         $link = $data['link'] ?? [];
 
         return new self(
+            messageTemplates: array_map(
+                MessageTemplate::fromArray(...),
+                $data['messageTemplates'] ?? []
+            ),
             result: data_get_str($data, 'result') ?? '',
             total: data_get_int($link, 'total'),
             pageNumber: data_get_int($link, 'pageNumber', 1),
             pageSize: data_get_int($link, 'pageSize', 50),
             prevPage: data_get_str($link, 'prevPage'),
             nextPage: data_get_str($link, 'nextPage'),
-            messageTemplates: array_map(
-                MessageTemplate::fromArray(...),
-                $data['messageTemplates'] ?? []
-            ),
         );
-    }
-
-    public function hasMore(): bool
-    {
-        return $this->nextPage !== null;
     }
 }
