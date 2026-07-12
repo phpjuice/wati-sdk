@@ -1,7 +1,7 @@
 # Wati SDK
 
 [![CI](https://github.com/phpjuice/wati-sdk/actions/workflows/php.yml/badge.svg)](https://github.com/phpjuice/wati-sdk/actions/workflows/php.yml)
-[![PHP Version](https://img.shields.io/badge/PHP-8.3%20%7C%208.4-777BB4?logo=php&logoColor=white)](https://php.net)
+[![PHP Version](https://img.shields.io/badge/PHP-8.3%20%7C%208.4%20%7C%208.5-777BB4?logo=php&logoColor=white)](https://php.net)
 [![Latest Stable Version](http://poser.pugx.org/phpjuice/wati-sdk/v)](https://packagist.org/packages/phpjuice/wati-sdk)
 [![Total Downloads](http://poser.pugx.org/phpjuice/wati-sdk/downloads)](https://packagist.org/packages/phpjuice/wati-sdk)
 [![License](http://poser.pugx.org/phpjuice/wati-sdk/license)](https://packagist.org/packages/phpjuice/wati-sdk)
